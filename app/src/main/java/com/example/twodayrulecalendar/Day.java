@@ -1,12 +1,13 @@
 package com.example.twodayrulecalendar;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Month;
 
-public class Day {
-    private final Date date;
+public class Day implements Comparable<Day> {
+    private final LocalDate date;
     private boolean checked = false;
 
-    public Day(Date date) {
+    public Day(LocalDate date) {
         this.date = date;
     }
 
@@ -14,11 +15,30 @@ public class Day {
         return checked;
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public void switchChecked() {
+        checked = !checked;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
+
+    public int getDay() {
+        return date.getDayOfMonth();
+    }
+
+    public Month getMonth() {
+        return date.getMonth();
+    }
+
+    public int getYear() {
+        return date.getYear();
+    }
+
+    @Override
+    public int compareTo(Day day) {
+        return getDate().compareTo(day.getDate());
+    }
+
+
 }
